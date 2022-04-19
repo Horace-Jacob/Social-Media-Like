@@ -1,0 +1,3 @@
+mutation React($postId: Int!) {
+  react(postId: $postId)
+}
