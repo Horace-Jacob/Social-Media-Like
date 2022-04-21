@@ -14,6 +14,9 @@ import { isAuth } from "../middleware/isAuth";
 import { React } from "../entities/React";
 import cloudinary from "cloudinary";
 import { Remark } from "../entities/Remark";
+import dotEnv from "dotenv";
+
+dotEnv.config();
 
 @Resolver(Post)
 export class PostResolver {
@@ -115,9 +118,9 @@ export class PostResolver {
   ): Promise<Post> {
     let cloud = cloudinary.v2;
     cloud.config({
-      cloud_name: "djzgffiwk",
-      api_key: "543676518929721",
-      api_secret: "x-cOTIZG7Ht4pk1y2v31FriaRRM",
+      cloud_name: process.env.CLOUD_NAME,
+      api_key: process.env.API_KEY,
+      api_secret: process.env.API_SECRET,
     });
     const result = await cloud.uploader.upload(image);
     return Post.create({
